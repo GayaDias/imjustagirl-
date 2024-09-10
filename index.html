@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Surprise</title>
+    <style>
+        body {
+            background-color: #ffecf3; /* Softer pastel pink background */
+            font-family: 'Comic Sans MS', 'Bubblegum Sans', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .main-image {
+            max-width: 30%; /* Make the image smaller */
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 15px; /* Rounded corners for the image */
+            display: block;
+            margin-left: auto;
+            margin-right: auto; /* Center the image horizontally */
+        }
+
+        .content {
+            background: #fff0f5; /* Light pink content box */
+            padding: 40px;
+            border: 5px dashed #ff99cc; /* Dashed border for a cute effect */
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.4); /* Soft pink shadow */
+            border-radius: 30px; /* Rounded corners */
+            z-index: 10;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2, h1 {
+            font-size: 30px; /* Bigger and bolder text */
+            color: #ff66b2; /* Bright pink text color */
+            margin: 0;
+            padding-bottom: 20px;
+        }
+
+        button {
+            background-color: #ffb6c1; /* Light pink button color */
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 20px; /* Rounded buttons for a softer look */
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #ff69b4; /* Darker pink on hover */
+        }
+
+        .back-button {
+            position: absolute;
+            bottom: 20px;
+            left: 20px; /* Positioned in the bottom-left corner */
+            display: none; /* Initially hidden */
+            background-color: #ffb6c1;
+            border-radius: 20px;
+            font-size: 18px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .response-image {
+            max-width: 50%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Main Image Above the Box -->
+        <img src="imjustagirl.jpg" alt="Main Page Image" class="main-image" id="mainImage">
+
+        <!-- Main Content -->
+        <div class="content" id="mainContent">
+            <h2>Do you want to do role-playing with me for the rest of your life?</h2>
+            <button onclick="showResponse('yes')">Yes</button>
+            <button onclick="showResponse('no')">No</button>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <button class="back-button" id="backButton" onclick="goBack()">Back</button>
+
+    <script>
+        function showResponse(answer) {
+            const contentDiv = document.getElementById('mainContent');
+            const backButton = document.getElementById('backButton');
+            const mainImage = document.getElementById('mainImage');
+
+            // Hide the main image on response pages
+            mainImage.style.display = 'none';
+
+            if (answer === 'yes') {
+                contentDiv.innerHTML = `
+                    <h1>You liar, Go to Jinx!</h1>
+                    <img src="hamster.jpg" alt="Hamster Image" class="response-image">
+                `;
+            } else if (answer === 'no') {
+                contentDiv.innerHTML = `
+                    <h1>You got hacked!</h1>
+                    <img src="maxresdefault.jpg" alt="Maxresdefault Image" class="response-image">
+                `;
+            }
+
+            // Show the Back button
+            backButton.style.display = 'block';
+        }
+
+        function goBack() {
+            const contentDiv = document.getElementById('mainContent');
+            const backButton = document.getElementById('backButton');
+            const mainImage = document.getElementById('mainImage');
+
+            // Reset to main page
+            contentDiv.innerHTML = `
+                <h2>Do you want to do role-playing with me for the rest of your life?</h2>
+                <button onclick="showResponse('yes')">Yes</button>
+                <button onclick="showResponse('no')">No</button>
+            `;
+            mainImage.style.display = 'block'; // Show the main image again
+            backButton.style.display = 'none'; // Hide Back button
+        }
+    </script>
+
+</body>
+</html>
